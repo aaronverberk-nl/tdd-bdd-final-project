@@ -101,7 +101,6 @@ class TestProductModel(unittest.TestCase):
         self.assertEqual(new_product.available, product.available)
         self.assertEqual(new_product.category, product.category)
 
-
     def test_read_a_product(self):
         """It should Read a Product"""
         product = ProductFactory()
@@ -115,6 +114,11 @@ class TestProductModel(unittest.TestCase):
         self.assertEqual(found_product.description, product.description)
         self.assertEqual(found_product.price, product.price)
 
+        # Test data validation Exeption
+        with self.assertRaises(Exception):
+            product.id = ""
+            product.update()
+    
     def test_update_a_product(self):
         """It should Update a Product"""
         product = ProductFactory()
